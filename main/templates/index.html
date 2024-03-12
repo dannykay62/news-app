@@ -9,7 +9,7 @@
           <li><img src="/media/{{ first_news.image }}" alt="{{ first_news.title }}" />
             <div class="panel-overlay">
               <h2>{{ first_news.title }}</h2>
-              <p>{{ first_news.details }}<br />
+              <p>{{ first_news.details }}
                 <a href="/detail/{{ first_news.id }}">Continue Reading &raquo;</a></p>
             </div>
           </li>
@@ -17,8 +17,8 @@
           <li><img src="media/{{ news.image }}" alt="{{ news.title }}" />
             <div class="panel-overlay">
               <h2>{{ news.title }}</h2>
-              <p>{{ news.detail }}<br />
-                <a href="{{ news.id }}">Continue Reading &raquo;</a></p>
+              <p>{{ news.details }}
+                <a href="/details/{{ news.id }}">Continue Reading &raquo;</a></p>
             </div>
           </li>
           {% endfor %}
@@ -48,35 +48,70 @@
     <div class="fl_right"><a href="#"><img src="media/468x60.gif" alt="" /></a></div>
     <br class="clear" />
   </div>
+
+  {% for category in three_categories %}
+  <section class="py-5">
+    
+    
+    <!-- <div class="container"> -->
+      <div id="hpage_cats">
+      <h2><a href="{{ category.id }}">{{ category.title }} &raquo;</a></h2>
+      <div class="row gx-5">
+        
+        <!-- Column -->
+        {% for news in category.news_set.all %}
+        {% if forloop.counter < 4 %}
+        <div class="col-md-3">
+          
+          <div class="card">
+            <img src="media/{{news.image}}" class="card-img-top" alt="{{news.title}}">
+            <div class="card-body">
+              <h5 class="card-title">{{ news.title }}</h5>
+              <h7 class="card-subtitle">By Olu Alo</h7>
+              <p>{{ news.details }}<a href="/details/{{news.id}}">Continue Reading &raquo;</a></p>
+              <!-- <h7 class="card-footer">By Olu Alo</h7> -->
+            </div>
+          </div>
+          
+        </div>
+        {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+    
+    <!-- </div> -->
+  </section>
+  {% endfor %}
+    
+
+
+
   <div id="hpage_cats">
     {% for category in three_categories %}
-    <div id="hpage_latest">
-      <h2><a href="{{ category.id}}">{{ category.title }} &raquo;</a></h2>
-      <img src="media/100x100.gif" alt="" />
-      <p><strong><a href="#">Indonectetus facilis leo.</a></strong></p>
-      <p>This is a W3C standards compliant free website template from <a href="http://www.os-templates.com/">OS Templates</a>. For more CSS templates visit <a href="http://www.os-templates.com/">Free Website Templates</a>. Condimentumfelis et amet tellent quisquet a leo lacus nec augue accumsan sagittislaorem dolor sum at urna.</p>
-    </div>
-    <!-- <div class="fl_right">
-      <h2><a href="{{ category.id}}">{{ category.title }} &raquo;</a></h2>
-      <img src="media/100x100.gif" alt="" />
-      <p><strong><a href="#">Indonectetus facilis leo.</a></strong></p>
-      <p>This template is distributed using a <a href="http://www.os-templates.com/template-terms">Website Template Licence</a>, which allows you to use and modify the template for both personal and commercial use when you keep the provided credit links in the footer.</p>
-    </div> -->
-    <br class="clear" />
-    {% endfor %}
-    <!-- <div class="fl_left">
-      <h2><a href="#">Entertainment &raquo;</a></h2>
-      <img src="media/100x100.gif" alt="" />
-      <p><strong><a href="#">Indonectetus facilis leo.</a></strong></p>
-      <p>Morbitincidunt maurisque eros molest nunc anteget sed vel lacus mus semper. Anterdumnullam interdum eros dui urna consequam ac nisl nullam ligula vestassa. Condimentumfelis et amet tellent quisquet a leo lacus nec augue accumsan sagittislaorem dolor sum at urna.</p>
+    {% for news in category.news_set.all %}
+      {% if forloop.counter < 4 %}
+    <div class="fl_left">
+      <h2><a href="#">{{category.title}} &raquo;</a></h2>
+      <!-- <img src="media/{{news.image}}" alt="" /> -->
+      <p><strong><a href="#">{{news.title}}</a></strong></p>
+      <p>{{news.details}}<a href="http://www.os-templates.com/">OS Templates</a>. For more CSS templates visit <a href="http://www.os-templates.com/">Free Website Templates</a></p>
     </div>
     <div class="fl_right">
-      <h2><a href="#">Politics &raquo;</a></h2>
-      <img src="media/100x100.gif" alt="" />
-      <p><strong><a href="#">Indonectetus facilis leo.</a></strong></p>
-      <p>Morbitincidunt maurisque eros molest nunc anteget sed vel lacus mus semper. Anterdumnullam interdum eros dui urna consequam ac nisl nullam ligula vestassa. Condimentumfelis et amet tellent quisquet a leo lacus nec augue accumsan sagittislaorem dolor sum at urna.</p>
-    </div> 
-    <br class="clear" /> -->
+      <h2><a href="#">{{category.title}} &raquo;</a></h2>
+      <!-- <img src="media/{{news.image}}" alt="{{news.title}}" /> -->
+      <p><strong><a href="#">{{news.title}}</a></strong></p>
+      <p>{{news.details}}<a href="http://www.os-templates.com/">OS Templates</a>. For more CSS templates visit <a href="http://www.os-templates.com/">Free Website Templates</a></p>
+    </div>
+    {% endif %}
+    {% endfor %}
+    <br class="clear" />
+    {% endfor %}
+  </div>
+
+
+    
+    <!-- <br class="clear" /> -->
+    
   </div>
 </div>
 <!-- ####################################################################################################### -->

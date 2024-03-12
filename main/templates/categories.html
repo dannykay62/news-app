@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+<main class="container mt-3 mb-5">
+    <h3 class="border-bottom pb-1 my-4">All Categories</h3>
+    <div class="row">
+        <!--Category box-->
+        {% for cat in all_cats %}
+        <div class="col-md-4">
+            <div class="card mb-3 shadow">
+                <img src="media/{{cat.category_image}}" class="card-img" alt="{{cat.title}}">
+                <div class="card-body">
+                    <h5 class="card-title">{{cat.title}}</h5>
+                    <hr/>
+                    <p class="card-text">Lorem ipsum</p>
+                    <p class="card-text"><a href="/category/{{cat.id}}" class="btn btn-sm btn-primary">All News</a></p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</main>
+{% endblock %}
+
+
+<!-- <main class="container mt-3 mb-5">
+    <h3 class="border-bottom pb-1 my-4">category 1</h3>
+    <!--News box-->
+<!--    <div class="card mb-4 shadow">
+        <div class="row no-gutters">
+            <div class="col-md-3">
+                <img src="" class="card-img" alt="">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">Lorem ipsum</p>
+                    <p class="card-text"><a href="" class="btn btn-sm btn-primary">Read full story</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</main> -->
